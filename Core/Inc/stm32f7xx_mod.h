@@ -12,4 +12,6 @@ void mod_toggle_led1(void);
 
 void mod_send_usb_test_data(void);
 
+void mod_send_uart_test_logs(void);
+
 #endif /* INC_STM32F7XX_MOD_H_ */

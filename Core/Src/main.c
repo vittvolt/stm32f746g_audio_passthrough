@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "stm32f7xx_mod.h"
+#include "kratos_log.h"
 
 /* USER CODE END Includes */
 
@@ -115,6 +116,8 @@ int main(void)
   MX_UART4_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  log_set_uart(&huart1);
 
   /* USER CODE END 2 */
 
@@ -337,11 +340,14 @@ void StartDefaultTask(void *argument)
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   mod_toggle_led1();
+
+  printf("Starting testing code...\n");
+
   for(;;)
   {
-    osDelay(2000);
+    osDelay(5000);
     mod_send_usb_test_data();
-    mod_send_uart_test_logs(&huart1);
+    mod_send_uart_test_logs();
   }
   /* USER CODE END 5 */
 }

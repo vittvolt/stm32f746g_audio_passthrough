@@ -1,0 +1,3 @@
+../Core/Src/kratos_log.c:14:6:log_send_uart_logs	16	static
+../Core/Src/kratos_log.c:26:5:__io_putchar	24	static
+../Core/Src/kratos_log.c:32:6:log_set_uart	16	static

@@ -6,6 +6,7 @@
  */
 
 #include "stm32f7xx_mod.h"
+#include "kratos_log.h"
 
 #include "string.h"
 
@@ -36,16 +37,12 @@ void mod_send_usb_test_data(void)
   ret = CDC_Transmit_FS(testStr, strlen(testStr));
   if (ret != USBD_OK) {
     _mod_led_quick_toggle(2);
+    printf("Error from USB fs tx: %d\n", (int)ret);
   }
 }
 
-void mod_send_uart_test_logs(UART_HandleTypeDef *uart)
+void mod_send_uart_test_logs(void)
 {
-  HAL_StatusTypeDef ret;
   char testStr[] = "Test log from STM32F7 !\n";
-
-  ret = HAL_UART_Transmit(uart, testStr, strlen(testStr), 300);
-  if (ret != HAL_OK) {
-    _mod_led_quick_toggle(4);
-  }
+  log_send_uart_logs(testStr, strlen(testStr));
 }
